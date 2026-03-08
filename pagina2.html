@@ -107,6 +107,25 @@
         .pay-label { display: flex; align-items: center; gap: 8px; font-size: 0.75rem; color: #ccc; cursor: pointer; }
         .finance-summary { background: rgba(255, 255, 255, 0.03); padding: 10px 15px; font-size: 0.75rem; border-bottom: 1px solid rgba(197, 160, 40, 0.1); display: flex; justify-content: space-between; align-items: center; font-style: italic; }
         .installment-selector { background: rgba(197, 160, 40, 0.05) !important; border-bottom: 1px solid var(--dourado-base) !important; font-size: 0.7rem !important; padding: 2px !important; width: 65px !important; height: 28px !important; margin-left: 5px; color: white !important; }
+
+        @media print {
+            body { background-color: #ffffff !important; color: #000000 !important; background-image: none !important; }
+            button, .btn-clear { display: none !important; }
+            .luxury-card { border: none !important; box-shadow: none !important; background: transparent !important; filter: none !important; backdrop-filter: none !important; margin: 0 !important; padding: 0 !important; }
+            input, textarea, select { border: none !important; border-bottom: 1px solid #cccccc !important; color: #000000 !important; background: transparent !important; resize: none !important; }
+            .finance-summary { background: transparent !important; border: 1px solid #cccccc !important; color: #000000 !important; }
+            .gold-gradient-text { background: none !important; color: #000000 !important; -webkit-text-fill-color: #000000 !important; }
+            .twin-box-header { background: #eeeeee !important; color: #000000 !important; border-bottom: 1px solid #cccccc !important; }
+            .twin-box { border: 1px solid #cccccc !important; background: transparent !important; }
+            .twin-box textarea { color: #000000 !important; }
+            #val_r, label, span, p, th, td { color: #000000 !important; }
+            th { border-bottom: 1px solid #000000 !important; }
+            td { border-bottom: 1px solid #eeeeee !important; }
+            .custom-radio { border: 1px solid #000000 !important; }
+            .custom-radio:checked::before { background: #000000 !important; box-shadow: inset 1em 1em #000000 !important; }
+            .signature-pad { border-bottom: 1px solid #000000 !important; }
+            .section-title { color: #000000 !important; }
+        }
     </style>
 </head>
 <body onload="init()">
@@ -270,7 +289,8 @@
         try {
             await fetch(S_URL, { method: 'POST', body: JSON.stringify(finalData), mode: 'no-cors' });
             localStorage.removeItem('rx_data_p1');
-            alert("PRONTUÁRIO PREMIUM FINALIZADO E SALVO COM SUCESSO!");
+            alert("PRONTUÁRIO PREMIUM FINALIZADO E SALVO COM SUCESSO! Pressione OK para gerar seu comprovante PDF.");
+            window.print();
             window.location.href = "index.html";
         } catch (e) {
             alert("Erro ao enviar. Verifique sua conexão.");
