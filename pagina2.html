@@ -1,0 +1,311 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>RX - Plano de Tratamento | Página 2</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&family=Playfair+Display:ital,wght@0,700;1,700&display=swap" rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        :root {
+            --dourado-base: #C5A028;
+            --dourado-brilho: #E2C275;
+            --preto-pure: #000000;
+            --glass: rgba(255, 255, 255, 0.03);
+        }
+
+        body {
+            background-color: var(--preto-pure);
+            color: var(--dourado-base);
+            font-family: 'Inter', sans-serif;
+            margin: 0;
+            padding: 20px 10px;
+            background-image: radial-gradient(circle at top right, #1a1508, transparent 40%);
+            background-attachment: fixed;
+            touch-action: manipulation;
+        }
+
+        @media (min-width: 768px) { body { padding: 40px 20px; } }
+
+        .luxury-card {
+            max-width: 1100px;
+            margin: 0 auto;
+            background: var(--glass);
+            backdrop-filter: blur(15px);
+            border: 1px solid rgba(197, 160, 40, 0.2);
+            padding: 25px 20px;
+            border-radius: 24px;
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.8);
+        }
+
+        @media (min-width: 768px) { .luxury-card { padding: 60px; } }
+
+        h1, h2, .font-serif, .section-title { font-family: 'Playfair Display', serif; }
+
+        .gold-gradient-text {
+            background: linear-gradient(to right, var(--dourado-base), var(--dourado-brilho), var(--dourado-base));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        input[type="text"], input[type="tel"], select, textarea {
+            width: 100%;
+            background: transparent !important;
+            border: none;
+            border-bottom: 1px solid rgba(197, 160, 40, 0.2);
+            color: #ffffff !important;
+            padding: 10px 0;
+            font-size: 16px;
+            outline: none;
+            border-radius: 0;
+            height: 46px;
+        }
+
+        select option { background-color: #111 !important; color: #ffffff !important; }
+
+        label {
+            font-size: 0.65rem;
+            letter-spacing: 0.25em;
+            text-transform: uppercase;
+            color: var(--dourado-base);
+            margin-bottom: 4px;
+            display: block;
+            opacity: 0.7;
+        }
+
+        .section-title {
+            font-size: 1.8rem;
+            font-weight: 700;
+            text-align: center;
+            margin-top: 20px;
+            margin-bottom: 50px;
+            letter-spacing: 0.02em;
+        }
+
+        .signature-pad {
+            border-bottom: 1px solid var(--dourado-base);
+            background: rgba(255, 255, 255, 0.02);
+            width: 100%;
+            height: 140px;
+            touch-action: none;
+            cursor: crosshair;
+        }
+        .btn-clear { font-size: 0.55rem; text-transform: uppercase; opacity: 0.4; margin-top: 8px; cursor: pointer; }
+
+        table { width: 100%; border-collapse: collapse; }
+        th { text-align: left; font-size: 0.65rem; padding: 15px 10px; border-bottom: 1px solid var(--dourado-base); text-transform: uppercase; letter-spacing: 0.2em; }
+        td { padding: 10px; border-bottom: 1px solid rgba(197, 160, 40, 0.1); }
+
+        .custom-radio { appearance: none; width: 18px; height: 18px; border: 1px solid var(--dourado-base); border-radius: 50%; cursor: pointer; display: grid; place-content: center; }
+        .custom-radio:checked::before { content: ""; width: 10px; height: 10px; border-radius: 50%; background: var(--dourado-brilho); }
+
+        .twin-box { border: 1px solid rgba(197, 160, 40, 0.2); border-radius: 16px; background: rgba(0, 0, 0, 0.2); overflow: hidden; display: flex; flex-direction: column; }
+        .twin-box-header { background: rgba(197, 160, 40, 0.1); padding: 12px; text-align: center; font-size: 0.65rem; text-transform: uppercase; letter-spacing: 0.25em; border-bottom: 1px solid rgba(197, 160, 40, 0.1); font-weight: 600; }
+        .twin-box textarea { flex-grow: 1; height: 110px; padding: 15px; border: none !important; resize: none; font-size: 0.9rem; line-height: 1.5; color: #fff !important; }
+
+        .payment-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; padding: 15px; border-bottom: 1px solid rgba(197, 160, 40, 0.1); }
+        .pay-label { display: flex; align-items: center; gap: 8px; font-size: 0.75rem; color: #ccc; cursor: pointer; }
+        .finance-summary { background: rgba(255, 255, 255, 0.03); padding: 10px 15px; font-size: 0.75rem; border-bottom: 1px solid rgba(197, 160, 40, 0.1); display: flex; justify-content: space-between; align-items: center; font-style: italic; }
+        .installment-selector { background: rgba(197, 160, 40, 0.05) !important; border-bottom: 1px solid var(--dourado-base) !important; font-size: 0.7rem !important; padding: 2px !important; width: 65px !important; height: 28px !important; margin-left: 5px; color: white !important; }
+    </style>
+</head>
+<body onload="init()">
+
+<div class="luxury-card">
+    <header class="flex flex-col md:flex-row justify-between items-center md:items-start mb-16">
+        <div class="flex flex-col items-center md:items-start text-center md:text-left">
+            <h1 class="text-6xl md:text-8xl font-bold gold-gradient-text tracking-tighter">RX</h1>
+            <div class="mt-4">
+                <p class="text-[0.7rem] tracking-[0.5em] uppercase opacity-50 font-medium">DRA. REBECA XAVIER • CRO 9940</p>
+                <p class="text-[0.7rem] tracking-[0.4em] mt-2 uppercase gold-gradient-text font-bold text-center">Estratificação Natural de Lentes de Resina</p>
+            </div>
+        </div>
+        <div class="text-right mt-8 md:mt-0">
+            <span class="text-[0.6rem] tracking-[0.4em] opacity-40 uppercase font-bold block mb-1">Registro Digital</span>
+            <div class="flex items-center justify-center md:justify-end gap-2">
+                <span class="text-xs opacity-50 uppercase">No.</span>
+                <input type="text" id="num_p2" name="num_prontuario_p2" style="width: 100px; text-align: right; font-size: 1.5rem; font-weight: bold; color: var(--dourado-brilho) !important;" class="border-none !p-0">
+            </div>
+            <h2 class="text-md md:text-lg font-light italic gold-gradient-text mt-4 opacity-80">Excelência Odontológica</h2>
+        </div>
+    </header>
+
+    <div class="section-title gold-gradient-text">Plano de Tratamento</div>
+
+    <div class="grid grid-cols-1 md:grid-cols-4 gap-8 mb-16 items-end">
+        <div class="md:col-span-4"><label>Paciente</label><input type="text" id="p2_nome" name="paciente_p2" autocomplete="name"></div>
+        <div class="md:col-span-2">
+            <label>Data</label>
+            <div class="flex gap-2">
+                <select id="dia" name="p2_dia"><option value="">Dia</option></select>
+                <select id="mes" name="p2_mes">
+                    <option value="">Mês</option>
+                    <option value="Janeiro">Janeiro</option><option value="Fevereiro">Fevereiro</option><option value="Março">Março</option><option value="Abril">Abril</option><option value="Maio">Maio</option><option value="Junho">Junho</option><option value="Julho">Julho</option><option value="Agosto">Agosto</option><option value="Setembro">Setembro</option><option value="Outubro">Outubro</option><option value="Novembro">Novembro</option><option value="Dezembro">Dezembro</option>
+                </select>
+                <select id="ano" name="p2_ano"><option value="">Ano</option></select>
+            </div>
+        </div>
+        <div class="md:col-span-2"><label>WhatsApp</label><input type="tel" id="zap_p2" name="whatsapp_p2" autocomplete="tel"></div>
+    </div>
+
+    <section class="mb-16 overflow-x-auto">
+        <table class="min-w-[850px]">
+            <thead>
+                <tr>
+                    <th class="w-1/2">Tratamentos a serem realizados</th>
+                    <th class="text-center">Aceite</th>
+                    <th class="text-center">Recusa</th>
+                    <th class="text-right">Honorários</th>
+                </tr>
+            </thead>
+            <tbody id="corpo_tratamentos"></tbody>
+        </table>
+    </section>
+
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-12 mb-16 items-start">
+        <div class="md:col-span-2 space-y-6 text-[0.75rem] leading-relaxed text-justify opacity-80">
+            <p>1. Valores válidos por <span class="border-b border-white border-opacity-40 inline-block px-1"><input type="text" id="p2_validade" name="p2_validade" class="border-none text-center !p-0 font-bold" maxlength="3" style="width: 28px; color: white;"></span> dias. Favor apresentar este orçamento na consulta.</p>
+            <p>2. Ciente de possível alteração biológica e orçamentária no curso do tratamento.</p>
+            <p>3. Aceito e autorizo a execução do tratamento estipulado.</p>
+        </div>
+        <div class="border border-[var(--dourado-base)] p-8 rounded-2xl bg-white bg-opacity-5 flex flex-col items-center justify-center">
+            <label class="mb-2">Honorários Totais</label>
+            <div class="text-2xl font-bold flex items-center">
+                <span class="mr-2">R$</span><input type="text" id="total_p2" name="p2_valor_total" class="w-32 border-none !p-0 font-bold text-white text-2xl text-center" readonly value="0,00">
+            </div>
+        </div>
+    </div>
+
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-10 mb-20">
+        <div class="twin-box">
+            <div class="twin-box-header gold-gradient-text">Observação</div>
+            <textarea id="p2_obs" name="p2_observacao" placeholder="Notas clínicas..."></textarea>
+        </div>
+        <div class="twin-box">
+            <div class="twin-box-header gold-gradient-text">Plano de Pagamento</div>
+            <div class="payment-grid">
+                <label class="pay-label"><input type="radio" name="p2_pagamento" value="Pix" class="custom-radio" onchange="toggleCred(false)"> Pix</label>
+                <label class="pay-label"><input type="radio" name="p2_pagamento" value="Débito" class="custom-radio" onchange="toggleCred(false)"> Débito</label>
+                <label class="pay-label">
+                    <input type="radio" name="p2_pagamento" id="r_cred" value="Crédito" class="custom-radio" onchange="toggleCred(true)"> Crédito
+                    <select id="parc" name="p2_parcelas" class="installment-selector border-b border-[var(--dourado-base)] text-[0.7rem] w-16 ml-2" disabled onchange="calcTotal()"></select>
+                </label>
+                <label class="pay-label"><input type="radio" name="p2_pagamento" value="Dinheiro" class="custom-radio" onchange="toggleCred(false)"> Dinheiro</label>
+            </div>
+            <div class="finance-summary">
+                <span id="lbl_r">Resumo Financeiro:</span>
+                <span id="val_r" class="font-bold text-white">R$ 0,00</span>
+            </div>
+            <textarea id="p2_pagamento_detalhes" name="p2_pagamento_detalhes" placeholder="Detalhes extras..."></textarea>
+        </div>
+    </div>
+
+    <footer class="grid grid-cols-1 md:grid-cols-2 gap-16 md:gap-32 pt-10">
+        <div class="text-center flex flex-col items-center">
+            <canvas id="p_dentista" class="signature-pad"></canvas>
+            <div onclick="clearPad('p_dentista')" class="btn-clear">Limpar Assinatura Dentista</div>
+            <p class="text-[0.6rem] uppercase tracking-widest mt-4">Cirurgião Dentista — CRO</p>
+        </div>
+        <div class="text-center flex flex-col items-center">
+            <canvas id="p_paciente" class="signature-pad"></canvas>
+            <div onclick="clearPad('p_paciente')" class="btn-clear">Limpar Assinatura Paciente</div>
+            <p class="text-[0.6rem] uppercase tracking-widest mt-4">Assinatura do Paciente</p>
+        </div>
+    </footer>
+
+    <div class="mt-20 flex flex-col md:flex-row justify-center gap-6">
+        <button onclick="window.location.reload()" class="border border-[var(--dourado-base)] text-[var(--dourado-base)] font-bold rounded-full px-12 py-4 uppercase text-xs tracking-widest">Limpar</button>
+        <button id="btn_salvar" onclick="finalizar()" class="bg-gradient-to-r from-[var(--dourado-base)] to-[var(--dourado-brilho)] text-black font-bold rounded-full px-12 py-4 uppercase text-xs tracking-widest">Salvar Página 2</button>
+    </div>
+</div>
+
+<script>
+    const S_URL = "https://script.google.com/macros/s/AKfycbw0334N0K0s3yZoSlDSohZ5OZSkFRDBm1lJpN3GSo3-lviFHuGVmvvJ_NFOATcFkxYk/exec";
+
+    function setupPad(id) {
+        const c = document.getElementById(id);
+        const ctx = c.getContext('2d'); let drawing = false;
+        function resize() { const r = c.getBoundingClientRect(); c.width = r.width; c.height = r.height; ctx.strokeStyle = "#C5A028"; ctx.lineWidth = 2.5; ctx.lineCap = "round"; }
+        window.addEventListener('resize', resize); resize();
+        const getP = (e) => { const r = c.getBoundingClientRect(); const clX = e.touches ? e.touches[0].clientX : e.clientX; const clY = e.touches ? e.touches[0].clientY : e.clientY; return { x: clX - r.left, y: clY - r.top }; };
+        const start = (e) => { drawing = true; ctx.beginPath(); const p = getP(e); ctx.moveTo(p.x, p.y); };
+        const move = (e) => { if(!drawing) return; e.preventDefault(); const p = getP(e); ctx.lineTo(p.x, p.y); ctx.stroke(); };
+        const end = () => drawing = false;
+        c.addEventListener('mousedown', start); c.addEventListener('mousemove', move); window.addEventListener('mouseup', end);
+        c.addEventListener('touchstart', start, {passive: false}); c.addEventListener('touchmove', move, {passive: false}); c.addEventListener('touchend', end);
+    }
+    
+    function clearPad(id) { const c = document.getElementById(id); c.getContext('2d').clearRect(0,0,c.width,c.height); }
+    
+    function toggleCred(act) { const s = document.getElementById('parc'); s.disabled = !act; if(!act) s.selectedIndex = 0; calcTotal(); }
+    
+    function calcTotal() {
+        let t = 0;
+        document.querySelectorAll('.v-i').forEach(i => { let v = i.value.replace(/\./g, "").replace(",", "."); t += parseFloat(v) || 0; });
+        document.getElementById('total_p2').value = t.toLocaleString('pt-BR', { minimumFractionDigits: 2 });
+        const cr = document.getElementById('r_cred').checked; const p = parseInt(document.getElementById('parc').value);
+        const l = document.getElementById('lbl_r'); const v = document.getElementById('val_r');
+        if(t > 0 && cr && p > 1) { l.innerText = `Parcelamento em ${p}x:`; v.innerText = `R$ ${(t/p).toLocaleString('pt-BR', { minimumFractionDigits: 2 })} / mês`; }
+        else { l.innerText = "Valor do Orçamento:"; v.innerText = `R$ ${t.toLocaleString('pt-BR', { minimumFractionDigits: 2 })}`; }
+    }
+
+    async function finalizar() {
+        const btn = document.getElementById('btn_salvar');
+        btn.innerText = "ENVIANDO AO GOOGLE...";
+        btn.disabled = true;
+
+        const dataP1 = JSON.parse(localStorage.getItem('rx_data_p1') || "{}");
+        const dataP2 = {};
+
+        document.querySelectorAll('input, select, textarea').forEach(el => {
+            if (el.type === 'radio') {
+                if (el.checked) dataP2[el.name || el.id] = el.value;
+            } else if (el.id || el.name) {
+                dataP2[el.id || el.name] = el.value;
+            }
+        });
+
+        const finalData = { ...dataP1, ...dataP2, "Timestamp_Final": new Date().toLocaleString('pt-BR') };
+
+        try {
+            await fetch(S_URL, { method: 'POST', body: JSON.stringify(finalData), mode: 'no-cors' });
+            localStorage.removeItem('rx_data_p1');
+            alert("PRONTUÁRIO PREMIUM FINALIZADO E SALVO COM SUCESSO!");
+            window.location.href = "index.html";
+        } catch (e) {
+            alert("Erro ao enviar. Verifique sua conexão.");
+            btn.innerText = "Salvar Página 2";
+            btn.disabled = false;
+        }
+    }
+
+    function init() {
+        setupPad('p_dentista'); setupPad('p_paciente');
+        const d = document.getElementById('dia'); const a = document.getElementById('ano'); const p = document.getElementById('parc');
+        for(let i=1; i<=31; i++) d.innerHTML += `<option value="${i}">${i}</option>`;
+        const currentYear = new Date().getFullYear();
+        for(let i=currentYear; i>=1910; i--) a.innerHTML += `<option value="${i}">${i}</option>`;
+        for(let i=1; i<=12; i++) p.innerHTML += `<option value="${i}">${i}x</option>`;
+        
+        const tb = document.getElementById('corpo_tratamentos');
+        for(let i=1; i<=9; i++) { 
+            tb.innerHTML += `<tr>
+                <td><input type="text" name="p2_proc_${i}" class="text-sm"></td>
+                <td class="text-center"><input type="radio" name="p2_status_${i}" value="Aceite" class="custom-radio"></td>
+                <td class="text-center"><input type="radio" name="p2_status_${i}" value="Recusa" class="custom-radio"></td>
+                <td><div class="flex justify-end items-center"><span class="text-xs mr-1 opacity-50">R$</span><input type="text" name="p2_val_${i}" class="v-i text-right text-sm w-24"></div></td>
+            </tr>`; 
+        }
+        
+        document.querySelectorAll('.v-i').forEach(el => el.addEventListener('input', (e) => {
+            let v = e.target.value.replace(/\D/g, ""); v = (v/100).toLocaleString('pt-BR', { minimumFractionDigits: 2 });
+            e.target.value = v === "0,00" ? "" : v; calcTotal();
+        }));
+        
+        document.getElementById('zap_p2').addEventListener('input', (e) => {
+            let v = e.target.value.replace(/\D/g, ""); v = v.replace(/^(\d{2})(\d)/g, "($1) $2").replace(/(\d)(\d{4})$/, "$1-$2"); e.target.value = v;
+        });
+    }
+</script>
+</body>
+</html>

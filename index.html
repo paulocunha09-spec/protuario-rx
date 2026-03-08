@@ -1,0 +1,403 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>RX - Experience Premium | Página 1</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&family=Playfair+Display:ital,wght@0,700;1,700&display=swap" rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        :root {
+            --dourado-base: #C5A028;
+            --dourado-brilho: #E2C275;
+            --erro: #ff4d4d;
+            --sucesso: #C5A028;
+            --preto-pure: #000000;
+            --glass: rgba(255, 255, 255, 0.03);
+        }
+
+        body {
+            background-color: var(--preto-pure);
+            color: var(--dourado-base);
+            font-family: 'Inter', sans-serif;
+            margin: 0;
+            padding: 20px 10px;
+            background-image: radial-gradient(circle at top right, #1a1508, transparent 40%);
+            background-attachment: fixed;
+        }
+
+        @media (min-width: 768px) { body { padding: 40px 20px; } }
+
+        .luxury-card {
+            max-width: 1100px;
+            margin: 0 auto;
+            background: var(--glass);
+            backdrop-filter: blur(15px);
+            -webkit-backdrop-filter: blur(15px);
+            border: 1px solid rgba(197, 160, 40, 0.2);
+            padding: 25px 20px;
+            border-radius: 24px;
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.8);
+        }
+
+        @media (min-width: 768px) { .luxury-card { padding: 60px; } }
+
+        h1, h2, .font-serif { font-family: 'Playfair Display', serif; }
+
+        .gold-gradient-text {
+            background: linear-gradient(to right, var(--dourado-base), var(--dourado-brilho), var(--dourado-base));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        input[type="text"], input[type="email"], input[type="number"], input[type="tel"], select, textarea {
+            width: 100%;
+            background: transparent !important;
+            border: none;
+            border-bottom: 1px solid rgba(197, 160, 40, 0.2);
+            color: #ffffff !important;
+            padding: 12px 0;
+            font-size: 16px; 
+            outline: none;
+            transition: all 0.4s ease;
+            border-radius: 0;
+        }
+
+        input.invalid { border-bottom: 1px solid var(--erro) !important; box-shadow: 0 1px 0 var(--erro); }
+        input.valid { border-bottom: 2px solid var(--sucesso) !important; }
+
+        input:disabled { 
+            opacity: 0.3; 
+            cursor: not-allowed; 
+            border-bottom: 1px solid rgba(197, 160, 40, 0.1);
+        }
+
+        label {
+            font-size: 0.65rem;
+            letter-spacing: 0.25em;
+            text-transform: uppercase;
+            color: var(--dourado-base);
+            margin-bottom: 8px;
+            display: block;
+            opacity: 0.7;
+        }
+
+        .custom-option {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            cursor: pointer;
+            font-size: 0.9rem;
+            color: #ccc;
+            padding: 8px 0;
+        }
+
+        input[type="radio"] {
+            appearance: none;
+            width: 22px;
+            height: 22px;
+            border: 1px solid var(--dourado-base);
+            border-radius: 50%;
+            cursor: pointer;
+            display: grid;
+            place-content: center;
+        }
+
+        input[type="radio"]::before {
+            content: "";
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            transform: scale(0);
+            transition: 120ms transform ease-in-out;
+            box-shadow: inset 1em 1em var(--dourado-brilho);
+        }
+
+        input[type="radio"]:checked::before { transform: scale(1); }
+        input[type="radio"]:checked {
+            border-color: var(--dourado-brilho);
+            box-shadow: 0 0 10px rgba(226, 194, 117, 0.4);
+        }
+
+        .section-divider {
+            height: 1px;
+            background: linear-gradient(to right, transparent, rgba(197, 160, 40, 0.3), transparent);
+            margin: 40px 0;
+        }
+
+        .section-title {
+            font-size: 1.3rem;
+            text-align: center;
+            margin-bottom: 30px;
+            letter-spacing: 0.25em;
+            font-weight: bold;
+        }
+
+        @media (min-width: 768px) { .section-title { font-size: 1.6rem; letter-spacing: 0.35em; margin-bottom: 50px; } }
+
+        .btn-luxury-primary {
+            background: linear-gradient(135deg, var(--dourado-base), var(--dourado-brilho));
+            color: #000;
+            font-weight: 700;
+            padding: 18px 40px;
+            border-radius: 50px;
+            text-transform: uppercase;
+            letter-spacing: 0.15em;
+            cursor: pointer;
+            width: 100%;
+        }
+
+        @media (min-width: 768px) { .btn-luxury-primary { width: auto; padding: 20px 60px; } }
+
+        .btn-luxury-secondary {
+            background: transparent;
+            color: var(--dourado-base);
+            border: 1px solid var(--dourado-base);
+            font-weight: 600;
+            padding: 16px 40px;
+            border-radius: 50px;
+            text-transform: uppercase;
+            letter-spacing: 0.15em;
+            cursor: pointer;
+            width: 100%;
+        }
+
+        @media (min-width: 768px) { .btn-luxury-secondary { width: auto; padding: 18px 50px; } }
+
+        select option { background-color: #111; color: white; }
+    </style>
+</head>
+<body onload="init()">
+
+<div class="luxury-card">
+    <header class="flex flex-col md:flex-row justify-between items-center md:items-start mb-16 md:mb-24">
+        <div class="flex flex-col items-center md:items-start text-center md:text-left">
+            <h1 class="text-6xl md:text-8xl font-bold gold-gradient-text tracking-tighter">RX</h1>
+            <div class="mt-4 flex flex-col items-center md:items-start">
+                <p class="text-[0.7rem] tracking-[0.5em] uppercase opacity-50 font-medium">DRA. REBECA XAVIER • CRO 9940</p>
+                <p class="text-[0.7rem] tracking-[0.4em] mt-2 uppercase gold-gradient-text font-bold text-center w-full">
+                    Estratificação Natural de Lentes de Resina
+                </p>
+            </div>
+        </div>
+        
+        <div class="text-right mt-8 md:mt-0">
+            <span class="text-[0.6rem] tracking-[0.4em] opacity-40 uppercase font-bold block mb-1">Registro Digital</span>
+            <div class="flex items-center justify-center md:justify-end gap-2">
+                <span class="text-xs opacity-50 uppercase">No.</span>
+                <input type="text" id="num_prontuario" style="width: 100px; text-align: right; font-size: 1.5rem; font-weight: bold; color: var(--dourado-brilho) !important;" class="border-none !p-0">
+            </div>
+            <h2 class="text-md md:text-lg font-light italic gold-gradient-text mt-4 opacity-80">Excelência Odontológica</h2>
+        </div>
+    </header>
+
+    <section>
+        <div class="section-title gold-gradient-text uppercase">01. Identificação do Paciente</div>
+        <div class="grid grid-cols-1 md:grid-cols-4 gap-8 md:gap-12">
+            <div class="md:col-span-2"><label>Nome Completo</label><input type="text" id="p_nome" autocomplete="name"></div>
+            <div class="md:col-span-2">
+                <label>Sexo</label>
+                <div class="flex gap-8 md:gap-12 mt-2">
+                    <label class="custom-option"><input type="radio" name="sexo" value="Feminino"> Feminino</label>
+                    <label class="custom-option"><input type="radio" name="sexo" value="Masculino"> Masculino</label>
+                </div>
+            </div>
+            <div class="md:col-span-1"><label>RG</label><input type="text" id="input_rg"></div>
+            <div class="md:col-span-1"><label>CPF</label><input type="text" id="input_cpf"></div>
+            <div class="md:col-span-2">
+                <label>Data de Nascimento</label>
+                <div class="flex gap-2">
+                    <select id="dia" class="flex-1" autocomplete="bday-day"></select>
+                    <select id="mes" class="flex-[2]" autocomplete="bday-month">
+                        <option value="">Mês</option>
+                        <option value="Janeiro">Janeiro</option><option value="Fevereiro">Fevereiro</option><option value="Março">Março</option><option value="Abril">Abril</option><option value="Maio">Maio</option><option value="Junho">Junho</option><option value="Julho">Julho</option><option value="Agosto">Agosto</option><option value="Setembro">Setembro</option><option value="Outubro">Outubro</option><option value="Novembro">Novembro</option><option value="Dezembro">Dezembro</option>
+                    </select>
+                    <select id="ano" class="flex-1" autocomplete="bday-year"></select>
+                </div>
+            </div>
+            <div class="grid grid-cols-2 md:contents gap-4">
+                <div><label>Naturalidade</label><input type="text" id="p_naturalidade"></div>
+                <div><label>Nacionalidade</label><input type="text" id="p_nacionalidade"></div>
+            </div>
+            <div class="grid grid-cols-2 md:contents gap-4">
+                <div><label>Estado Civil</label><input type="text" id="p_estado_civil"></div>
+                <div><label>Profissão</label><input type="text" id="p_profissao" autocomplete="organization-title"></div>
+            </div>
+            <div class="md:col-span-2"><label>WhatsApp</label><input type="tel" id="input_whatsapp" autocomplete="tel"></div>
+            <div class="md:col-span-2"><label>E-mail Pessoal</label><input type="email" id="p_email" autocomplete="email"></div>
+            <div class="md:col-span-2"><label>Endereço</label><input type="text" id="p_endereco" autocomplete="street-address"></div>
+            <div class="grid grid-cols-2 md:contents gap-4">
+                <div class="md:col-span-1"><label>Nº</label><input type="text" id="p_numero"></div>
+                <div class="md:col-span-1"><label>Bairro</label><input type="text" id="p_bairro"></div>
+            </div>
+        </div>
+    </section>
+
+    <div class="section-divider"></div>
+
+    <section>
+        <div class="section-title gold-gradient-text uppercase">02. Anamnese</div>
+        <div class="space-y-10">
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-10">
+                <div><label>Queixa Principal</label><textarea id="p_queixa" rows="2"></textarea></div>
+                <div><label>História da Doença Atual</label><textarea id="p_historia" rows="2"></textarea></div>
+            </div>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-x-20 gap-y-10" id="anamnese-dinamica"></div>
+        </div>
+    </section>
+
+    <div class="section-divider"></div>
+
+    <section>
+        <div class="section-title gold-gradient-text uppercase">03. Histórico de Patologias</div>
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-x-20 gap-y-2 md:gap-y-4" id="patologia-container"></div>
+    </section>
+
+    <div class="section-divider"></div>
+
+    <section>
+        <div class="section-title gold-gradient-text uppercase">04. Hábitos de Vida</div>
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-x-20 gap-y-4 md:gap-y-6" id="habitos-container"></div>
+    </section>
+
+    <footer class="mt-20 md:mt-24 flex flex-col md:flex-row justify-center items-center gap-6 md:gap-12">
+        <button onclick="window.location.reload()" class="btn-luxury-secondary order-2 md:order-1">Limpar Página</button>
+        <button onclick="salvar()" class="btn-luxury-primary order-1 md:order-2">Salvar e Ir para Página 2</button>
+    </footer>
+</div>
+
+<script>
+    const masks = {
+        cpf(v) { v = v.replace(/\D/g, ""); v = v.replace(/(\d{3})(\d)/, "$1.$2").replace(/(\d{3})(\d)/, "$1.$2").replace(/(\d{3})(\d{1,2})$/, "$1-$2"); return v; },
+        rg(v) { v = v.replace(/\D/g, ""); v = v.replace(/(\d{7})(\d)/, "$1-$2"); return v; },
+        whatsapp(v) { v = v.replace(/\D/g, ""); v = v.replace(/^(\d{2})(\d)/g, "($1) $2").replace(/(\d)(\d{4})$/, "$1-$2"); return v; }
+    };
+
+    function validateCPF(cpf) {
+        cpf = cpf.replace(/[^\d]+/g, '');
+        if (cpf.length !== 11 || !!cpf.match(/(\d)\1{10}/)) return false;
+        let sum = 0, rest;
+        for (let i = 1; i <= 9; i++) sum = sum + parseInt(cpf.substring(i - 1, i)) * (11 - i);
+        rest = (sum * 10) % 11; if ((rest == 10) || (rest == 11)) rest = 0;
+        if (rest != parseInt(cpf.substring(9, 10))) return false;
+        sum = 0;
+        for (let i = 1; i <= 10; i++) sum = sum + parseInt(cpf.substring(i - 1, i)) * (12 - i);
+        rest = (sum * 10) % 11; if ((rest == 10) || (rest == 11)) rest = 0;
+        if (rest != parseInt(cpf.substring(10, 11))) return false;
+        return true;
+    }
+
+    const anamnese = [
+        {t: "Está fazendo algum tratamento médico?", n: "q1"},
+        {t: "Faz uso de alguma medicação?", n: "q2", extra: "Qual?", id: "ex2"},
+        {t: "Possui algum tipo de alergia?", n: "q3", extra: "Qual?", id: "ex3"},
+        {t: "Pressão arterial costumeira:", n: "q4", options: ["Normal", "Alta", "Baixa"]},
+        {t: "Se mulher: Está grávida?", n: "q5", extra: "Semanas?", id: "ex5"},
+        {t: "Já foi submetido(a) a alguma cirurgia?", n: "q6", extra: "Qual?", id: "ex6"},
+        {t: "Já teve hemorragia?", n: "q7"},
+        {t: "Sente falta de ar com frequência?", n: "q8", extra: "Frequência?", id: "ex8"},
+        {t: "Problema com anestesia?", n: "q9", extra: "Descreva", id: "ex9"},
+        {t: "Possui alguma patologia / Doença?", n: "q10"}
+    ];
+
+    const patologias = ["Anemia", "Asma", "Cicatrização Ruim", "Cirurgia Realizada", "Desmaios", "Diabetes", "Distúrbios Psicológicos", "Dores de Cabeça", "Endocardite Bacteriana", "Epilepsia", "Febre Reumática", "Hepatite", "Herpes", "Hipertensão", "Hipotensão", "HIV", "Internação Hospitalar", "PNE (Necessidades Especiais)", "Problema Cardíaco (Coração)", "Problema Hepático (Fígado)", "Problema Hormonal", "Problema Renal", "Sífilis", "Tuberculose"];
+    const habitos = ["Alcoolismo", "Consumo de Café", "Consumo de Doces", "Morder Objetos", "Onicofagia (Roer Unhas)", "Tabagismo (Fumante)", "Uso de Drogas"];
+
+    function toggleInput(id, status) { const el = document.getElementById(id); if(el) { el.disabled = !status; if(!status) el.value = ""; } }
+
+    function init() {
+        const d = document.getElementById('dia'); const a = document.getElementById('ano');
+        d.innerHTML = '<option value="">Dia</option>'; for(let i=1; i<=31; i++) d.innerHTML += `<option value="${i}">${i}</option>`;
+        a.innerHTML = '<option value="">Ano</option>'; for(let i=new Date().getFullYear(); i>=1910; i--) a.innerHTML += `<option value="${i}">${i}</option>`;
+
+        const cpfIn = document.getElementById('input_cpf');
+        cpfIn.addEventListener('input', e => {
+            e.target.value = masks.cpf(e.target.value);
+            const pure = e.target.value.replace(/\D/g, "");
+            if(pure.length === 11) {
+                if(validateCPF(pure)) { cpfIn.classList.add('valid'); cpfIn.classList.remove('invalid'); }
+                else { cpfIn.classList.add('invalid'); cpfIn.classList.remove('valid'); }
+            } else { cpfIn.classList.remove('valid', 'invalid'); }
+        });
+        document.getElementById('input_rg').addEventListener('input', e => e.target.value = masks.rg(e.target.value));
+        document.getElementById('input_whatsapp').addEventListener('input', e => e.target.value = masks.whatsapp(e.target.value));
+
+        const anaCont = document.getElementById('anamnese-dinamica');
+        anamnese.forEach(q => {
+            let h = `<div class="flex flex-col gap-3 border-b border-white border-opacity-5 pb-6 md:border-none">
+                <label class="text-white text-sm opacity-90">${q.t}</label>
+                <div class="flex flex-col sm:flex-row gap-4 items-start sm:items-center">
+                    <div class="flex gap-6">`;
+            if(q.options) { q.options.forEach(opt => { h += `<label class="custom-option"><input type="radio" name="${q.n}" value="${opt}"> ${opt}</label>`; });
+            } else { h += `<label class="custom-option"><input type="radio" name="${q.n}" value="Sim" onchange="toggleInput('${q.id}', true)"> Sim</label>
+                         <label class="custom-option"><input type="radio" name="${q.n}" value="Não" onchange="toggleInput('${q.id}', false)" checked> Não</label>`; }
+            h += `</div>`;
+            if(q.extra) { h += `<div class="flex-1 w-full"><label class="text-[0.6rem] font-bold uppercase opacity-40" style="color:var(--dourado-base)">${q.extra}</label>
+                         <input type="text" id="${q.id}" disabled class="!py-1 text-sm"></div>`; }
+            h += `</div></div>`; anaCont.innerHTML += h;
+        });
+
+        const pCont = document.getElementById('patologia-container');
+        patologias.forEach((p, i) => { pCont.innerHTML += `<div class="flex justify-between items-center border-b border-white border-opacity-5 py-4"><span class="text-sm text-gray-400">${p}</span><div class="flex gap-8"><label class="custom-option"><input type="radio" name="p${i}" value="Sim"> Sim</label><label class="custom-option"><input type="radio" name="p${i}" value="Não" checked> Não</label></div></div>`; });
+
+        const hCont = document.getElementById('habitos-container');
+        habitos.forEach((h, i) => { hCont.innerHTML += `<div class="flex justify-between items-center border-b border-white border-opacity-5 py-4"><span class="text-sm text-gray-400">${h}</span><div class="flex gap-8"><label class="custom-option"><input type="radio" name="h${i}" value="Sim"> Sim</label><label class="custom-option"><input type="radio" name="h${i}" value="Não" checked> Não</label></div></div>`; });
+    }
+
+    function salvar() {
+        const data = {};
+        document.querySelectorAll('input, select, textarea').forEach(el => {
+            if (el.type === 'radio') {
+                if (el.checked) data[el.name] = el.value;
+            } else if (el.id || el.name) {
+                data[el.id || el.name] = el.value;
+            }
+        });
+        localStorage.setItem('rx_data_p1', JSON.stringify(data));
+        window.location.href = 'Prontu%C3%A1rio%20-%20P%C3%A1gina%202.Html';
+    }
+</script>
+<script>
+    const S_URL = "https://script.google.com/macros/s/AKfycbw0334N0K0s3yZoSlDSohZ5OZSkFRDBm1lJpN3GSo3-lviFHuGVmvvJ_NFOATcFkxYk/exec";
+
+    async function finalizarEnvioPaciente() {
+        const btn = document.getElementById('btn_avancar') || document.querySelector('.btn-luxury-primary');
+        const originalText = btn.innerText;
+        
+        // Validação básica de nome
+        const nome = document.querySelector('input[name="paciente_nome"]') || document.getElementById('p_nome');
+        if(!nome.value) { alert("Por favor, preencha seu nome completo."); return; }
+
+        btn.innerText = "ENVIANDO PRONTUÁRIO...";
+        btn.disabled = true;
+
+        const data = { "Origem": "PACIENTE_P1" };
+        document.querySelectorAll('input, select, textarea').forEach(el => {
+            if (el.type === 'radio') { if (el.checked) data[el.name || el.id] = el.value; }
+            else if (el.id || el.name) { data[el.id || el.name] = el.value; }
+        });
+
+        try {
+            await fetch(S_URL, { method: 'POST', body: JSON.stringify(data), mode: 'no-cors' });
+            // Feedback de Sucesso para o Paciente
+            document.body.innerHTML = `
+                <div class="luxury-card text-center" style="margin-top:100px;">
+                    <h1 class="text-4xl gold-gradient-text mb-6">Recebido com Sucesso</h1>
+                    <p class="text-white opacity-70">Obrigado, ${nome.value}.<br>Seus dados foram enviados com segurança para a Dra. Rebeca Xavier.</p>
+                    <div class="mt-10 h-[1px] w-20 bg-[#C5A028] mx-auto opacity-50"></div>
+                </div>`;
+        } catch (e) {
+            alert("Erro ao enviar. Verifique sua conexão.");
+            btn.innerText = originalText;
+            btn.disabled = false;
+        }
+    }
+
+    // Vincula a nova função ao botão original
+    document.addEventListener('DOMContentLoaded', () => {
+        const btn = document.getElementById('btn_avancar') || document.querySelector('.btn-luxury-primary');
+        btn.innerText = "FINALIZAR E ENVIAR PRONTUÁRIO";
+        btn.setAttribute('onclick', 'finalizarEnvioPaciente()');
+        btn.type = "button";
+    });
+</script>
