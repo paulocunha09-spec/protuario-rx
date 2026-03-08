@@ -165,6 +165,19 @@
         @media (min-width: 768px) { .btn-luxury-secondary { width: auto; padding: 18px 50px; } }
 
         select option { background-color: #111; color: white; }
+
+        @media print {
+            body { background-color: #ffffff !important; color: #000000 !important; background-image: none !important; }
+            button, footer, #status-message { display: none !important; }
+            .luxury-card { border: none !important; box-shadow: none !important; background: transparent !important; filter: none !important; backdrop-filter: none !important; margin: 0 !important; padding: 0 !important; }
+            input, textarea, select { border: none !important; border-bottom: 1px solid #cccccc !important; color: #000000 !important; background: transparent !important; resize: none !important; }
+            .gold-gradient-text { background: none !important; color: #000000 !important; -webkit-text-fill-color: #000000 !important; }
+            label, span, p, div { color: #000000 !important; }
+            input[type="radio"] { border: 1px solid #000000 !important; }
+            input[type="radio"]:checked::before { box-shadow: inset 1em 1em #000000 !important; background: #000000 !important; }
+            .section-divider { background: #cccccc !important; height: 1px !important; }
+            .custom-option { color: #000000 !important; }
+        }
     </style>
 </head>
 <body onload="init()">
@@ -379,6 +392,10 @@
 
         try {
             await fetch(S_URL, { method: 'POST', body: JSON.stringify(data), mode: 'no-cors' });
+            
+            alert("Dados enviados com sucesso! Pressione OK para gerar seu PDF de comprovante.");
+            window.print();
+            
             // Feedback de Sucesso para o Paciente
             document.body.innerHTML = `
                 <div class="luxury-card text-center" style="margin-top:100px;">
@@ -401,3 +418,5 @@
         btn.type = "button";
     });
 </script>
+</body>
+</html>
