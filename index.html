@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>RX - Experience Premium | Identificação</title>
+    <title>RX - Experience Premium | Página 1</title>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&family=Playfair+Display:ital,wght@0,700;1,700&display=swap" rel="stylesheet">
     <script src="https://cdn.tailwindcss.com"></script>
     <style>
@@ -42,7 +42,7 @@
 
         @media (min-width: 768px) { .luxury-card { padding: 60px; } }
 
-        h1, h2, .font-serif { font-family: 'Playfair Display', serif; }
+        h1, h2, .font-serif, .section-title { font-family: 'Playfair Display', serif; }
 
         .gold-gradient-text {
             background: linear-gradient(to right, var(--dourado-base), var(--dourado-brilho), var(--dourado-base));
@@ -63,15 +63,6 @@
             border-radius: 0;
         }
 
-        input.invalid { border-bottom: 1px solid var(--erro) !important; box-shadow: 0 1px 0 var(--erro); }
-        input.valid { border-bottom: 2px solid var(--sucesso) !important; }
-
-        input:disabled { 
-            opacity: 0.3; 
-            cursor: not-allowed; 
-            border-bottom: 1px solid rgba(197, 160, 40, 0.1);
-        }
-
         label {
             font-size: 0.65rem;
             letter-spacing: 0.25em;
@@ -80,6 +71,20 @@
             margin-bottom: 8px;
             display: block;
             opacity: 0.7;
+        }
+
+        .section-divider {
+            height: 1px;
+            background: linear-gradient(to right, transparent, rgba(197, 160, 40, 0.3), transparent);
+            margin: 40px 0;
+        }
+
+        .section-title {
+            font-size: 1.3rem;
+            text-align: center;
+            margin-bottom: 30px;
+            letter-spacing: 0.25em;
+            font-weight: bold;
         }
 
         .custom-option {
@@ -110,28 +115,11 @@
             border-radius: 50%;
             transform: scale(0);
             transition: 120ms transform ease-in-out;
+            background: var(--dourado-brilho);
             box-shadow: inset 1em 1em var(--dourado-brilho);
         }
 
         input[type="radio"]:checked::before { transform: scale(1); }
-        input[type="radio"]:checked {
-            border-color: var(--dourado-brilho);
-            box-shadow: 0 0 10px rgba(226, 194, 117, 0.4);
-        }
-
-        .section-divider {
-            height: 1px;
-            background: linear-gradient(to right, transparent, rgba(197, 160, 40, 0.3), transparent);
-            margin: 40px 0;
-        }
-
-        .section-title {
-            font-size: 1.3rem;
-            text-align: center;
-            margin-bottom: 30px;
-            letter-spacing: 0.25em;
-            font-weight: bold;
-        }
 
         .btn-luxury-primary {
             background: linear-gradient(135deg, var(--dourado-base), var(--dourado-brilho));
@@ -143,37 +131,18 @@
             letter-spacing: 0.15em;
             cursor: pointer;
             width: 100%;
-            transition: transform 0.2s ease;
-        }
-
-        .btn-luxury-primary:active { transform: scale(0.98); }
-
-        .btn-luxury-secondary {
-            background: transparent;
-            color: var(--dourado-base);
-            border: 1px solid var(--dourado-base);
-            font-weight: 600;
-            padding: 16px 40px;
-            border-radius: 50px;
-            text-transform: uppercase;
-            letter-spacing: 0.15em;
-            cursor: pointer;
-            width: 100%;
+            text-align: center;
         }
 
         select option { background-color: #111; color: white; }
 
         @media print {
             body { background-color: #ffffff !important; color: #000000 !important; background-image: none !important; padding: 0 !important; }
-            button, footer, #status-message { display: none !important; }
+            .no-print { display: none !important; }
             .luxury-card { border: none !important; box-shadow: none !important; background: transparent !important; filter: none !important; backdrop-filter: none !important; margin: 0 !important; padding: 0 !important; max-width: 100% !important; }
             input, textarea, select { border: none !important; border-bottom: 1px solid #cccccc !important; color: #000000 !important; background: transparent !important; resize: none !important; }
             .gold-gradient-text { background: none !important; color: #000000 !important; -webkit-text-fill-color: #000000 !important; }
-            label, span, p, div { color: #000000 !important; }
-            input[type="radio"] { border: 1px solid #000000 !important; }
-            input[type="radio"]:checked::before { box-shadow: inset 1em 1em #000000 !important; background: #000000 !important; }
-            .section-divider { background: #cccccc !important; height: 1px !important; }
-            .custom-option { color: #000000 !important; }
+            label, span, p, div, th, td { color: #000000 !important; }
         }
     </style>
 </head>
@@ -204,7 +173,7 @@
     <section>
         <div class="section-title gold-gradient-text uppercase">01. Identificação do Paciente</div>
         <div class="grid grid-cols-1 md:grid-cols-4 gap-8 md:gap-12">
-            <div class="md:col-span-2"><label>Nome Completo</label><input type="text" id="p_nome" autocomplete="name"></div>
+            <div class="md:col-span-2"><label>Nome Completo</label><input type="text" id="p_nome"></div>
             <div class="md:col-span-2">
                 <label>Sexo</label>
                 <div class="flex gap-8 md:gap-12 mt-2">
@@ -217,29 +186,23 @@
             <div class="md:col-span-2">
                 <label>Data de Nascimento</label>
                 <div class="flex gap-2">
-                    <select id="dia" class="flex-1"></select>
+                    <select id="dia" class="flex-1"><option value="">Dia</option></select>
                     <select id="mes" class="flex-[2]">
                         <option value="">Mês</option>
                         <option value="Janeiro">Janeiro</option><option value="Fevereiro">Fevereiro</option><option value="Março">Março</option><option value="Abril">Abril</option><option value="Maio">Maio</option><option value="Junho">Junho</option><option value="Julho">Julho</option><option value="Agosto">Agosto</option><option value="Setembro">Setembro</option><option value="Outubro">Outubro</option><option value="Novembro">Novembro</option><option value="Dezembro">Dezembro</option>
                     </select>
-                    <select id="ano" class="flex-1"></select>
+                    <select id="ano" class="flex-1"><option value="">Ano</option></select>
                 </div>
             </div>
-            <div class="grid grid-cols-2 md:contents gap-4">
-                <div><label>Naturalidade</label><input type="text" id="p_naturalidade"></div>
-                <div><label>Nacionalidade</label><input type="text" id="p_nacionalidade"></div>
-            </div>
-            <div class="grid grid-cols-2 md:contents gap-4">
-                <div><label>Estado Civil</label><input type="text" id="p_estado_civil"></div>
-                <div><label>Profissão</label><input type="text" id="p_profissao"></div>
-            </div>
+            <div><label>Naturalidade</label><input type="text" id="p_naturalidade"></div>
+            <div><label>Nacionalidade</label><input type="text" id="p_nacionalidade"></div>
+            <div><label>Estado Civil</label><input type="text" id="p_estado_civil"></div>
+            <div><label>Profissão</label><input type="text" id="p_profissao"></div>
             <div class="md:col-span-2"><label>WhatsApp</label><input type="tel" id="input_whatsapp"></div>
             <div class="md:col-span-2"><label>E-mail Pessoal</label><input type="email" id="p_email"></div>
             <div class="md:col-span-2"><label>Endereço</label><input type="text" id="p_endereco"></div>
-            <div class="grid grid-cols-2 md:contents gap-4">
-                <div class="md:col-span-1"><label>Nº</label><input type="text" id="p_numero"></div>
-                <div class="md:col-span-1"><label>Bairro</label><input type="text" id="p_bairro"></div>
-            </div>
+            <div><label>Nº</label><input type="text" id="p_numero"></div>
+            <div><label>Bairro</label><input type="text" id="p_bairro"></div>
         </div>
     </section>
 
@@ -260,19 +223,24 @@
 
     <section>
         <div class="section-title gold-gradient-text uppercase">03. Histórico de Patologias</div>
-        <div class="grid grid-cols-1 md:grid-cols-2 gap-x-20 gap-y-2 md:gap-y-4" id="patologia-container"></div>
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-x-20 gap-y-2" id="patologia-container"></div>
     </section>
 
     <div class="section-divider"></div>
 
     <section>
         <div class="section-title gold-gradient-text uppercase">04. Hábitos de Vida</div>
-        <div class="grid grid-cols-1 md:grid-cols-2 gap-x-20 gap-y-4 md:gap-y-6" id="habitos-container"></div>
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-x-20 gap-y-4" id="habitos-container"></div>
     </section>
 
-    <footer class="mt-20 md:mt-24 flex flex-col md:flex-row justify-center items-center gap-6 md:gap-12">
-        <button type="button" onclick="window.location.reload()" class="btn-luxury-secondary order-2 md:order-1">Limpar Página</button>
-        <button type="button" id="btn_avancar" class="btn-luxury-primary order-1 md:order-2">Finalizar e Ir para Página 2</button>
+    <footer class="mt-20 flex flex-col items-center gap-6 no-print">
+        <button type="button" id="btn_gerar_pdf" class="btn-luxury-primary w-full md:w-auto">
+            IMPRIMIR OU SALVAR PDF DA PÁGINA 1
+        </button>
+        <button type="button" id="btn_ir_p2" class="hidden bg-white text-black font-bold rounded-full px-12 py-4 uppercase text-xs tracking-widest border-2 border-[var(--dourado-base)]">
+            AVANÇAR PARA PLANO DE TRATAMENTO (P2) →
+        </button>
+        <button type="button" onclick="window.location.reload()" class="text-xs opacity-40 uppercase tracking-widest mt-4">Limpar Formulário</button>
     </footer>
 </div>
 
@@ -281,33 +249,17 @@
 
     const masks = {
         cpf(v) { v = v.replace(/\D/g, ""); v = v.replace(/(\d{3})(\d)/, "$1.$2").replace(/(\d{3})(\d)/, "$1.$2").replace(/(\d{3})(\d{1,2})$/, "$1-$2"); return v; },
-        rg(v) { v = v.replace(/\D/g, ""); v = v.replace(/(\d{7})(\d)/, "$1-$2"); return v; },
         whatsapp(v) { v = v.replace(/\D/g, ""); v = v.replace(/^(\d{2})(\d)/g, "($1) $2").replace(/(\d)(\d{4})$/, "$1-$2"); return v; }
     };
 
-    function validateCPF(cpf) {
-        cpf = cpf.replace(/[^\d]+/g, '');
-        if (cpf.length !== 11 || !!cpf.match(/(\d)\1{10}/)) return false;
-        let sum = 0, rest;
-        for (let i = 1; i <= 9; i++) sum = sum + parseInt(cpf.substring(i - 1, i)) * (11 - i);
-        rest = (sum * 10) % 11; if ((rest == 10) || (rest == 11)) rest = 0;
-        if (rest != parseInt(cpf.substring(9, 10))) return false;
-        sum = 0;
-        for (let i = 1; i <= 10; i++) sum = sum + parseInt(cpf.substring(i - 1, i)) * (12 - i);
-        rest = (sum * 10) % 11; if ((rest == 10) || (rest == 11)) rest = 0;
-        if (rest != parseInt(cpf.substring(10, 11))) return false;
-        return true;
-    }
-
-    const anamnese = [
+    const anamneseArr = [
         {t: "Está fazendo algum tratamento médico?", n: "q1"},
         {t: "Faz uso de alguma medicação?", n: "q2", extra: "Qual?", id: "ex2"},
         {t: "Possui algum tipo de alergia?", n: "q3", extra: "Qual?", id: "ex3"},
         {t: "Pressão arterial costumeira:", n: "q4", options: ["Normal", "Alta", "Baixa"]},
-        {t: "Se mulher: Está grávida?", n: "q5", extra: "Semanas?", id: "ex5"},
         {t: "Já foi submetido(a) a alguma cirurgia?", n: "q6", extra: "Qual?", id: "ex6"},
         {t: "Já teve hemorragia?", n: "q7"},
-        {t: "Sente falta de ar com frequência?", n: "q8", extra: "Frequência?", id: "ex8"},
+        {t: "Sente falta de ar com frequência?", n: "q8"},
         {t: "Problema com anestesia?", n: "q9", extra: "Descreva", id: "ex9"},
         {t: "Possui alguma patologia / Doença?", n: "q10"}
     ];
@@ -320,90 +272,72 @@
     function init() {
         // Popula datas
         const d = document.getElementById('dia'); const a = document.getElementById('ano');
-        d.innerHTML = '<option value="">Dia</option>'; for(let i=1; i<=31; i++) d.innerHTML += `<option value="${i}">${i}</option>`;
-        a.innerHTML = '<option value="">Ano</option>'; for(let i=new Date().getFullYear(); i>=1910; i--) a.innerHTML += `<option value="${i}">${i}</option>`;
+        for(let i=1; i<=31; i++) d.innerHTML += `<option value="${i}">${i}</option>`;
+        const currYear = new Date().getFullYear();
+        for(let i=currYear; i>=1910; i--) a.innerHTML += `<option value="${i}">${i}</option>`;
 
         // Mascaras
-        document.getElementById('input_cpf').addEventListener('input', e => {
-            e.target.value = masks.cpf(e.target.value);
-            const pure = e.target.value.replace(/\D/g, "");
-            if(pure.length === 11) {
-                if(validateCPF(pure)) { e.target.classList.add('valid'); e.target.classList.remove('invalid'); }
-                else { e.target.classList.add('invalid'); e.target.classList.remove('valid'); }
-            } else { e.target.classList.remove('valid', 'invalid'); }
-        });
-        document.getElementById('input_rg').addEventListener('input', e => e.target.value = masks.rg(e.target.value));
+        document.getElementById('input_cpf').addEventListener('input', e => e.target.value = masks.cpf(e.target.value));
         document.getElementById('input_whatsapp').addEventListener('input', e => e.target.value = masks.whatsapp(e.target.value));
 
         // Renderiza Anamnese
         const anaCont = document.getElementById('anamnese-dinamica');
-        anamnese.forEach(q => {
-            let h = `<div class="flex flex-col gap-3 border-b border-white border-opacity-5 pb-6 md:border-none">
+        anamneseArr.forEach(q => {
+            let h = `<div class="flex flex-col gap-3">
                 <label class="text-white text-sm opacity-90">${q.t}</label>
-                <div class="flex flex-col sm:flex-row gap-4 items-start sm:items-center">
+                <div class="flex flex-col sm:flex-row gap-4 items-start">
                     <div class="flex gap-6">`;
             if(q.options) { q.options.forEach(opt => { h += `<label class="custom-option"><input type="radio" name="${q.n}" value="${opt}"> ${opt}</label>`; });
             } else { h += `<label class="custom-option"><input type="radio" name="${q.n}" value="Sim" onchange="toggleInput('${q.id}', true)"> Sim</label>
                          <label class="custom-option"><input type="radio" name="${q.n}" value="Não" onchange="toggleInput('${q.id}', false)" checked> Não</label>`; }
             h += `</div>`;
-            if(q.extra) { h += `<div class="flex-1 w-full"><label class="text-[0.6rem] font-bold uppercase opacity-40" style="color:var(--dourado-base)">${q.extra}</label>
-                         <input type="text" id="${q.id}" disabled class="!py-1 text-sm"></div>`; }
+            if(q.extra) { h += `<div class="flex-1 w-full"><input type="text" id="${q.id}" disabled placeholder="${q.extra}" class="!py-1 text-sm"></div>`; }
             h += `</div></div>`; anaCont.innerHTML += h;
         });
 
-        // Renderiza Patologias e Habitos
+        // Patologias
         const pCont = document.getElementById('patologia-container');
-        patologias.forEach((p, i) => { pCont.innerHTML += `<div class="flex justify-between items-center border-b border-white border-opacity-5 py-4"><span class="text-sm text-gray-400">${p}</span><div class="flex gap-8"><label class="custom-option"><input type="radio" name="patol_${i}" value="Sim"> Sim</label><label class="custom-option"><input type="radio" name="patol_${i}" value="Não" checked> Não</label></div></div>`; });
+        patologias.forEach((p, i) => { pCont.innerHTML += `<div class="flex justify-between items-center border-b border-white border-opacity-5 py-2"><span class="text-xs text-gray-400">${p}</span><div class="flex gap-4"><label class="custom-option text-xs"><input type="radio" name="patol_${i}" value="Sim"> Sim</label><label class="custom-option text-xs"><input type="radio" name="patol_${i}" value="Não" checked> Não</label></div></div>`; });
 
+        // Habitos
         const hCont = document.getElementById('habitos-container');
-        habitos.forEach((h, i) => { hCont.innerHTML += `<div class="flex justify-between items-center border-b border-white border-opacity-5 py-4"><span class="text-sm text-gray-400">${h}</span><div class="flex gap-8"><label class="custom-option"><input type="radio" name="habito_${i}" value="Sim"> Sim</label><label class="custom-option"><input type="radio" name="habito_${i}" value="Não" checked> Não</label></div></div>`; });
+        habitos.forEach((h, i) => { hCont.innerHTML += `<div class="flex justify-between items-center border-b border-white border-opacity-5 py-2"><span class="text-xs text-gray-400">${h}</span><div class="flex gap-4"><label class="custom-option text-xs"><input type="radio" name="habito_${i}" value="Sim"> Sim</label><label class="custom-option text-xs"><input type="radio" name="habito_${i}" value="Não" checked> Não</label></div></div>`; });
 
-        // Listener do Botão Final
-        document.getElementById('btn_avancar').addEventListener('click', finalizarPagina1);
+        document.getElementById('btn_gerar_pdf').onclick = processarFluxoP1;
+        document.getElementById('btn_ir_p2').onclick = () => { window.location.href = 'pagina2.html'; };
     }
 
-    async function finalizarPagina1() {
-        const btn = document.getElementById('btn_avancar');
-        const nomeInput = document.getElementById('p_nome');
+    async function processarFluxoP1() {
+        const btnGerar = document.getElementById('btn_gerar_pdf');
+        const btnProximo = document.getElementById('btn_ir_p2');
+        if(!document.getElementById('p_nome').value.trim()) { alert("Nome é obrigatório."); return; }
 
-        if(!nomeInput.value.trim()) {
-            alert("O preenchimento do Nome Completo é obrigatório.");
-            nomeInput.focus();
-            return;
-        }
+        btnGerar.innerText = "PROCESSANDO...";
+        btnGerar.disabled = true;
 
-        btn.innerText = "PROCESSANDO...";
-        btn.disabled = true;
-
-        // Coleta de dados
-        const data = { "Origem": "PACIENTE_P1", "Timestamp": new Date().toISOString() };
+        const data = { "Origem": "PACIENTE_P1" };
         document.querySelectorAll('input, select, textarea').forEach(el => {
             if (el.type === 'radio') { if (el.checked) data[el.name || el.id] = el.value; }
             else if (el.id || el.name) { data[el.id || el.name] = el.value; }
         });
 
-        // Salva para a próxima página
         localStorage.setItem('rx_data_p1', JSON.stringify(data));
+        fetch(S_URL, { method: 'POST', body: JSON.stringify(data), mode: 'no-cors' });
 
-        // Envio para Planilha (sem travar o fluxo)
-        try {
-            fetch(S_URL, { method: 'POST', body: JSON.stringify(data), mode: 'no-cors' });
-        } catch(e) { console.warn("Erro de rede no envio."); }
-
-        // Configura o redirecionamento pós-impressão
         window.addEventListener('afterprint', () => {
-            window.location.href = 'pagina2.html';
+            btnGerar.classList.add('hidden');
+            btnProximo.classList.remove('hidden');
         }, { once: true });
 
-        // Dispara a impressão
+        setTimeout(() => { window.print(); }, 500);
+        
         setTimeout(() => {
-            window.print();
-            // Caso o navegador não suporte 'afterprint' ou o usuário cancele bruscamente,
-            // um fallback de segurança para redirecionar após 2 segundos pode ser útil:
-            setTimeout(() => { if(window.location.pathname.includes('index.html')) window.location.href = 'pagina2.html'; }, 2000);
-        }, 300);
+            if(!btnGerar.classList.contains('hidden')) {
+                btnGerar.classList.add('hidden');
+                btnProximo.classList.remove('hidden');
+            }
+        }, 5000);
     }
 </script>
-
 </body>
 </html>
