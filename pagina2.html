@@ -58,7 +58,6 @@
             font-size: 16px;
             outline: none;
             border-radius: 0;
-            height: 46px;
         }
 
         select option { background-color: #111 !important; color: #ffffff !important; }
@@ -109,9 +108,9 @@
         .installment-selector { background: rgba(197, 160, 40, 0.05) !important; border-bottom: 1px solid var(--dourado-base) !important; font-size: 0.7rem !important; padding: 2px !important; width: 65px !important; height: 28px !important; margin-left: 5px; color: white !important; }
 
         @media print {
-            body { background-color: #ffffff !important; color: #000000 !important; background-image: none !important; }
-            button, .btn-clear { display: none !important; }
-            .luxury-card { border: none !important; box-shadow: none !important; background: transparent !important; filter: none !important; backdrop-filter: none !important; margin: 0 !important; padding: 0 !important; }
+            body { background-color: #ffffff !important; color: #000000 !important; background-image: none !important; padding: 0 !important; }
+            button, .btn-clear, .no-print { display: none !important; }
+            .luxury-card { border: none !important; box-shadow: none !important; background: transparent !important; filter: none !important; backdrop-filter: none !important; margin: 0 !important; padding: 0 !important; max-width: 100% !important; }
             input, textarea, select { border: none !important; border-bottom: 1px solid #cccccc !important; color: #000000 !important; background: transparent !important; resize: none !important; }
             .finance-summary { background: transparent !important; border: 1px solid #cccccc !important; color: #000000 !important; }
             .gold-gradient-text { background: none !important; color: #000000 !important; -webkit-text-fill-color: #000000 !important; }
@@ -183,7 +182,7 @@
 
     <div class="grid grid-cols-1 md:grid-cols-3 gap-12 mb-16 items-start">
         <div class="md:col-span-2 space-y-6 text-[0.75rem] leading-relaxed text-justify opacity-80">
-            <p>1. Valores válidos por <span class="border-b border-white border-opacity-40 inline-block px-1"><input type="text" id="p2_validade" name="p2_validade" class="border-none text-center !p-0 font-bold" maxlength="3" style="width: 28px; color: white;"></span> dias. Favor apresentar este orçamento na consulta.</p>
+            <p>1. Valores válidos por <span class="border-b border-white border-opacity-40 inline-block px-1"><input type="text" id="p2_validade" name="p2_validade" class="border-none text-center !p-0 font-bold" maxlength="3" style="width: 28px; color: white;"></span> dias.</p>
             <p>2. Ciente de possível alteração biológica e orçamentária no curso do tratamento.</p>
             <p>3. Aceito e autorizo a execução do tratamento estipulado.</p>
         </div>
@@ -212,29 +211,29 @@
                 <label class="pay-label"><input type="radio" name="p2_pagamento" value="Dinheiro" class="custom-radio" onchange="toggleCred(false)"> Dinheiro</label>
             </div>
             <div class="finance-summary">
-                <span id="lbl_r">Resumo Financeiro:</span>
+                <span id="lbl_r">Valor do Orçamento:</span>
                 <span id="val_r" class="font-bold text-white">R$ 0,00</span>
             </div>
-            <textarea id="p2_pagamento_detalhes" name="p2_pagamento_detalhes" placeholder="Detalhes extras..."></textarea>
+            <textarea id="p2_pagamento_detalhes" name="p2_pagamento_detalhes" placeholder="Detalhes extras de parcelamento..."></textarea>
         </div>
     </div>
 
     <footer class="grid grid-cols-1 md:grid-cols-2 gap-16 md:gap-32 pt-10">
         <div class="text-center flex flex-col items-center">
             <canvas id="p_dentista" class="signature-pad"></canvas>
-            <div onclick="clearPad('p_dentista')" class="btn-clear">Limpar Assinatura Dentista</div>
-            <p class="text-[0.6rem] uppercase tracking-widest mt-4">Cirurgião Dentista — CRO</p>
+            <div onclick="clearPad('p_dentista')" class="btn-clear no-print">Limpar Assinatura Dentista</div>
+            <p class="text-[0.6rem] uppercase tracking-widest mt-4">Cirurgião Dentista — CRO 9940</p>
         </div>
         <div class="text-center flex flex-col items-center">
             <canvas id="p_paciente" class="signature-pad"></canvas>
-            <div onclick="clearPad('p_paciente')" class="btn-clear">Limpar Assinatura Paciente</div>
+            <div onclick="clearPad('p_paciente')" class="btn-clear no-print">Limpar Assinatura Paciente</div>
             <p class="text-[0.6rem] uppercase tracking-widest mt-4">Assinatura do Paciente</p>
         </div>
     </footer>
 
-    <div class="mt-20 flex flex-col md:flex-row justify-center gap-6">
-        <button onclick="window.location.reload()" class="border border-[var(--dourado-base)] text-[var(--dourado-base)] font-bold rounded-full px-12 py-4 uppercase text-xs tracking-widest">Limpar</button>
-        <button id="btn_salvar" onclick="finalizar()" class="bg-gradient-to-r from-[var(--dourado-base)] to-[var(--dourado-brilho)] text-black font-bold rounded-full px-12 py-4 uppercase text-xs tracking-widest">Salvar Página 2</button>
+    <div class="mt-20 flex flex-col md:flex-row justify-center gap-6 no-print">
+        <button onclick="window.location.reload()" class="border border-[var(--dourado-base)] text-[var(--dourado-base)] font-bold rounded-full px-12 py-4 uppercase text-xs tracking-widest">Limpar Página</button>
+        <button id="btn_salvar" onclick="finalizar()" class="bg-gradient-to-r from-[var(--dourado-base)] to-[var(--dourado-brilho)] text-black font-bold rounded-full px-12 py-4 uppercase text-xs tracking-widest">Finalizar e Imprimir</button>
     </div>
 </div>
 
@@ -270,7 +269,7 @@
 
     async function finalizar() {
         const btn = document.getElementById('btn_salvar');
-        btn.innerText = "ENVIANDO AO GOOGLE...";
+        btn.innerText = "SALVANDO...";
         btn.disabled = true;
 
         const dataP1 = JSON.parse(localStorage.getItem('rx_data_p1') || "{}");
@@ -284,17 +283,25 @@
             }
         });
 
-        const finalData = { ...dataP1, ...dataP2, "Timestamp_Final": new Date().toLocaleString('pt-BR') };
+        const finalData = { ...dataP1, ...dataP2, "Status": "FINALIZADO", "Timestamp_Fim": new Date().toLocaleString('pt-BR') };
 
         try {
-            await fetch(S_URL, { method: 'POST', body: JSON.stringify(finalData), mode: 'no-cors' });
-            localStorage.removeItem('rx_data_p1');
-            alert("PRONTUÁRIO PREMIUM FINALIZADO E SALVO COM SUCESSO! Pressione OK para gerar seu comprovante PDF.");
+            fetch(S_URL, { method: 'POST', body: JSON.stringify(finalData), mode: 'no-cors' });
+            
+            // Lógica de impressão
+            window.addEventListener('afterprint', () => {
+                localStorage.removeItem('rx_data_p1');
+                window.location.href = "index.html";
+            }, { once: true });
+            
             window.print();
-            window.location.href = "index.html";
+            
+            // Fallback para redirecionamento caso afterprint demore
+            setTimeout(() => { if(btn.disabled) window.location.href = "index.html"; }, 5000);
+
         } catch (e) {
-            alert("Erro ao enviar. Verifique sua conexão.");
-            btn.innerText = "Salvar Página 2";
+            alert("Erro ao salvar dados.");
+            btn.innerText = "Finalizar e Imprimir";
             btn.disabled = false;
         }
     }
@@ -303,9 +310,15 @@
         setupPad('p_dentista'); setupPad('p_paciente');
         const d = document.getElementById('dia'); const a = document.getElementById('ano'); const p = document.getElementById('parc');
         for(let i=1; i<=31; i++) d.innerHTML += `<option value="${i}">${i}</option>`;
-        const currentYear = new Date().getFullYear();
-        for(let i=currentYear; i>=1910; i--) a.innerHTML += `<option value="${i}">${i}</option>`;
+        const curr = new Date().getFullYear();
+        for(let i=curr; i>=1910; i--) a.innerHTML += `<option value="${i}">${i}</option>`;
         for(let i=1; i<=12; i++) p.innerHTML += `<option value="${i}">${i}x</option>`;
+        
+        // População Automática vinda da Página 1
+        const dataP1 = JSON.parse(localStorage.getItem('rx_data_p1') || "{}");
+        if(dataP1.p_nome) document.getElementById('p2_nome').value = dataP1.p_nome;
+        if(dataP1.num_prontuario) document.getElementById('num_p2').value = dataP1.num_prontuario;
+        if(dataP1.input_whatsapp) document.getElementById('zap_p2').value = dataP1.input_whatsapp;
         
         const tb = document.getElementById('corpo_tratamentos');
         for(let i=1; i<=9; i++) { 
